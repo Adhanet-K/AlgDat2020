@@ -308,7 +308,49 @@ public class Oblig1 {
 
     /********************* Oppgave 9 *********************/
     public static int[] tredjeMin(int[] a) {
-        throw new UnsupportedOperationException();
+      
+
+           int n = a.length;
+            if (n < 3) throw new java.util.NoSuchElementException("a.length(" + n + ") < 3!");
+
+            int[] b= indekssortering(new int[] {a[0],a[1],a[2]});
+
+            int m = a[0];
+            int nm = a[1];
+            int am = a[2];
+
+
+ 
+
+            int førsteminstverdi = a[m]; 
+            int andreminstverdi = a[nm];
+            int tredjeminstverdi = a[am]; 
+
+            for (int i = 3; i < n; i++) {
+                if (a[i] < førsteminstverdi) {
+                    am = nm;
+                    tredjeminstverdi = andreminstverdi;
+                    nm = m;
+                    andreminstverdi = førsteminstverdi;
+
+                    m = i;
+                    førsteminstverdi = a[i];
+
+                } else if (a[i] < andreminstverdi) {
+                    am = nm;
+                    tredjeminstverdi = andreminstverdi;
+                    nm = i;
+                    andreminstverdi = a[i];
+                } else if (a[i] < tredjeminstverdi)
+                    am = i;
+                tredjeminstverdi = a[i];
+            }
+
+
+            return new int[]{m, nm, am};
+
+
+        }
     }
 
     /********************* Oppgave 10 *********************/
